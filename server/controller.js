@@ -16,13 +16,15 @@ module.exports = {
     let { id } = req.params;
     let { type } = req.body;
     let index = db.findIndex((elem) => elem.id === +id);
+
     if (type === "plus") {
       db[index].price += 10000;
-      console.log(db[index].price);
       res.status(200).send(db);
     } else if (type === "minus") {
       db[index].price -= 10000;
       res.status(200).send(db);
+    } else {
+        res.status(400).send("You broke something.")
     }
   },
   deleteHouse: (req, res) => {
